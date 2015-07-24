@@ -116,7 +116,7 @@ static char const kPlayerPresentationSizeContext;
         }
         self.mainImageView.contentMode = info.contentMode;
 
-        if(info.mediaURL.as_isVideoURL)
+        if(info.isVideo)
         {
             [self showPlayerWithURL:info.mediaURL];
         }
