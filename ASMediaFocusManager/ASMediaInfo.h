@@ -11,12 +11,16 @@
 @interface ASMediaInfo : NSObject
 
 - (instancetype)initWithURL:(NSURL *)URL initialImage:(UIImage *)image;
+- (instancetype)initWithURL:(NSURL *)URL initialImage:(UIImage *)image forceVideo:(BOOL)forceVideo;
 - (instancetype)initWithURL:(NSURL *)URL initialImage:(UIImage *)image externalURL:(NSURL *)externalURL;
-- (instancetype)initWithURL:(NSURL *)URL initialImage:(UIImage *)image externalURL:(NSURL *)externalURL title:(NSString *)title;
 - (instancetype)initWithURL:(NSURL *)URL initialImage:(UIImage *)image externalURL:(NSURL *)externalURL overlayImage:(UIImage *)overlayImage;
+- (instancetype)initWithURL:(NSURL *)URL initialImage:(UIImage *)image externalURL:(NSURL *)externalURL overlayImage:(UIImage *)overlayImage title:(NSString *)title;
+
 
 /** the URL where the media (image or video) is stored. The URL may be local (file://) or distant (http://). */
 @property (nonatomic, copy, readonly) NSURL *mediaURL;
+/** determines whether the mediaURL will be treated as video */
+@property (nonatomic, readonly) BOOL isVideo;
 /** the URL where the external media (image or video) is stored. The URL may be local (file://) or distant (http://). */
 @property (nonatomic, copy, readonly) NSURL *externalURL;
 /** the title for this media view. Set to nil if you don't want any title to appear. */

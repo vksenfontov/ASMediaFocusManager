@@ -83,7 +83,7 @@ static CGFloat const kSwipeOffset = 100;
 
     ASMediaInfo *info = [self.delegate mediaFocusManager:self mediaInfoForView:view];
 
-    if(self.addPlayIconOnVideo && info.mediaURL.as_isVideoURL)
+    if(self.addPlayIconOnVideo && info.isVideo)
     {
         [self.videoBehavior addVideoIconToView:view image:self.playImage];
     }
