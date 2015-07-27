@@ -39,6 +39,7 @@ static char const kPlayerPresentationSizeContext;
 
 @property (nonatomic, assign) UIDeviceOrientation previousOrientation;
 @property (nonatomic, strong) AVPlayer *player;
+@property (nonatomic, strong) UIImageView *overlayImageView;
 
 @end
 
@@ -192,6 +193,29 @@ static char const kPlayerPresentationSizeContext;
     });
 }
 
+- (void)showOverlayImage:(UIImage *)image
+{
+    if (!self.overlayImageView) {
+        UIImageView *imageView;
+        imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.contentMode = UIViewContentModeCenter;
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        imageView.frame = self.view.bounds;
+        [self.view addSubview:imageView];
+        self.overlayImageView = imageView;
+    }
+    else {
+        self.overlayImageView.image = image;
+    }
+    
+    self.overlayImageView.hidden = NO;
+}
+
+- (void)hideOverlayImage
+{
+    self.overlayImageView.hidden = YES;
+}
+
 - (void)focusDidEndWithZoomEnabled:(BOOL)zoomEnabled
 {
     if(zoomEnabled && (self.playerView == nil))
@@ -206,6 +230,7 @@ static char const kPlayerPresentationSizeContext;
 
 - (void)defocusWillStart
 {
+    [self hideOverlayImage];
     [self uninstallZoomView];
     [self pinAccessoryView];
     [self.player pause];
