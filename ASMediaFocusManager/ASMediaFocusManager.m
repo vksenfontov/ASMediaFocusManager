@@ -163,7 +163,7 @@ static CGFloat const kSwipeOffset = 100;
     [viewController setInfo:mediaInfo withCachedImage:cachedImage];
     if (mediaInfo.overlayImage)
     {
-        [self addOverlayImageToView:viewController.view image:mediaInfo.overlayImage];
+        [viewController showOverlayImage:mediaInfo.overlayImage];
     }
     
     [self installTapGestureOnFocusViewController:viewController];
@@ -174,16 +174,6 @@ static CGFloat const kSwipeOffset = 100;
     }
 
     return viewController;
-}
-
-- (void)addOverlayImageToView:(UIView *)view image:(UIImage *)image
-{
-    UIImageView *imageView;
-    imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.contentMode = UIViewContentModeCenter;
-    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    imageView.frame = view.bounds;
-    [view addSubview:imageView];
 }
 
 #pragma mark - Focus/Defocus

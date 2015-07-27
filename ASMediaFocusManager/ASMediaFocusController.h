@@ -40,6 +40,9 @@
 - (void)defocusWillStart;
 - (BOOL)accessoryViewCanShow;
 
+- (void)showOverlayImage:(UIImage *)image;
+- (void)hideOverlayImage;
+
 - (void)pauseVideo;
 - (void)playVideo;
 
