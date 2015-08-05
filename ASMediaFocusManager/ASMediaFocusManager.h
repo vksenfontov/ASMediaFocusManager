@@ -30,11 +30,11 @@ typedef void(^ASMediaLoadCompletion)(id media, NSError *error);
 - (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameForView:(UIView *)view;
 
 // Called when a focus view is about to be shown. For example, you might use this method to hide the status bar.
-- (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager;
+- (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager withMediaInfo:(ASMediaInfo *)info;
 // Called when a focus view has been shown.
-- (void)mediaFocusManagerDidAppear:(ASMediaFocusManager *)mediaFocusManager;
+- (void)mediaFocusManagerDidAppear:(ASMediaFocusManager *)mediaFocusManager withMediaInfo:(ASMediaInfo *)info;
 // Called when the view is about to be dismissed by the 'done' button or by gesture. For example, you might use this method to show the status bar (if it was hidden before).
-- (void)mediaFocusManagerWillDisappear:(ASMediaFocusManager *)mediaFocusManager;
+- (void)mediaFocusManagerWillDisappear:(ASMediaFocusManager *)mediaFocusManager withMediaInfo:(ASMediaInfo *)info;
 // Called when the view has be dismissed by the 'done' button or by gesture.
 - (void)mediaFocusManagerDidDisappear:(ASMediaFocusManager *)mediaFocusManager;
 // called after a swipe shows a new media info item.

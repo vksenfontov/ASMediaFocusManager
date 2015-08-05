@@ -219,9 +219,9 @@ static CGFloat const kSwipeOffset = 100;
     }
 
     // This should be called after swipe gesture is installed to make sure the nav bar doesn't hide before animation begins.
-    if(self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerWillAppear:)])
+    if(self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerWillAppear:withMediaInfo:)])
     {
-        [self.delegate mediaFocusManagerWillAppear:self];
+        [self.delegate mediaFocusManagerWillAppear:self withMediaInfo:mediaInfo];
     }
     
     self.mediaView = mediaView;
@@ -328,9 +328,9 @@ static CGFloat const kSwipeOffset = 100;
                                                                                         [focusViewController playVideo];
                                                                                         self.isZooming = NO;
                                                                                         
-                                                                                        if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerDidAppear:)])
+                                                                                        if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerDidAppear:withMediaInfo:)])
                                                                                         {
-                                                                                            [self.delegate mediaFocusManagerDidAppear:self];
+                                                                                            [self.delegate mediaFocusManagerDidAppear:self withMediaInfo:focusViewController.info];
                                                                                         }
                                                                                     }];
                                                                }];
@@ -411,9 +411,9 @@ static CGFloat const kSwipeOffset = 100;
                         options:0
                      animations:^{
 
-                         if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerWillDisappear:)])
+                         if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerWillDisappear:withMediaInfo:)])
                          {
-                             [self.delegate mediaFocusManagerWillDisappear:self];
+                             [self.delegate mediaFocusManagerWillDisappear:self withMediaInfo:self.focusViewController.info];
                          }
 
                          self.mediaPageViewController.view.transform = CGAffineTransformIdentity;
@@ -545,9 +545,9 @@ static CGFloat const kSwipeOffset = 100;
     
     [UIView animateWithDuration:0.4*duration
                      animations:^{
-                         if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerWillDisappear:)])
+                         if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerWillDisappear:withMediaInfo:)])
                          {
-                             [self.delegate mediaFocusManagerWillDisappear:self];
+                             [self.delegate mediaFocusManagerWillDisappear:self withMediaInfo:self.focusViewController.info];
                          }
                          self.mediaPageViewController.view.transform = CGAffineTransformIdentity;
                          
