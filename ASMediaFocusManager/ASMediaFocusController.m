@@ -208,7 +208,7 @@ static char const kPlayerPresentationSizeContext;
         self.overlayImageView.image = image;
     }
     
-    self.overlayImageView.hidden = NO;
+    [self hideOverlayImage];
 }
 
 - (void)hideOverlayImage
@@ -225,6 +225,7 @@ static char const kPlayerPresentationSizeContext;
     [self.view setNeedsLayout];
     [self showAccessoryView:YES];
     self.playerView.hidden = NO;
+    self.overlayImageView.hidden = NO;
     // player will play when instructed to by the media focus manager.
 }
 
