@@ -48,6 +48,7 @@
         _initialImage = image;
         _overlayImage = overlayImage;
         _contentMode = UIViewContentModeScaleAspectFit;
+        _isYoutubeVideo = NO;
     }
     return self;
 }
