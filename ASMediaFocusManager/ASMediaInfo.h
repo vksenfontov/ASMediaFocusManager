@@ -33,5 +33,7 @@
 @property (nonatomic, assign) UIViewContentMode contentMode;
 /** Optional property to show a view pinned to the bottom of the focused area of the media. If present, this view is shown in place of the title. */
 @property (nonatomic, strong) UIView *accessoryView;
+/** Optional property to allow round-tripping of model info through the gallery. */
+@property (nonatomic, assign) BOOL isYoutubeVideo;
 
 @end
