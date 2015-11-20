@@ -6,14 +6,14 @@ Pod::Spec.new do |s|
   s.authors = {
     "Philippe Converset" => "pconverset@autresphere.com"
   }
-  s.homepage = "https://github.com/autresphere/ASMediaFocusManager"
+  s.homepage = "https://github.com/DomainGroupOSS/ASMediaFocusManager"
   s.source = {
-    :git => "https://github.com/autresphere/ASMediaFocusManager.git",
+    :git => "https://github.com/DomainGroupOSS/ASMediaFocusManager.git",
     :tag => "0.5"
   }
   s.platform = :ios, '6.0'
   s.source_files = 'ASMediaFocusManager/*.{h,m}'
-  s.resources = ['ASMediaFocusManager/*.xib', 'ASMediaFocusManager/Resources/*.png']
+  s.ios.resource_bundle = { 'ASMediaFocusManager' => ['ASMediaFocusManager/*.xib', 'ASMediaFocusManager/Resources/*.png'] }
   s.frameworks = 'UIKit', 'Foundation', 'CoreGraphics', 'AVFoundation'
   s.requires_arc = true
   s.dependency 'ASBPlayerScrubbing', '~> 0.1'
