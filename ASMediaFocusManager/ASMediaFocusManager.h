@@ -58,6 +58,8 @@ typedef void(^ASMediaLoadCompletion)(id media, NSError *error);
 @property (nonatomic, strong) UIColor *backgroundColor;
 // Enables defocus on vertical swipe. Defaults to YES.
 @property (nonatomic, assign) BOOL defocusOnVerticalSwipe;
+// Enables defocus on vertical swipe. Defaults to YES.
+@property (nonatomic, assign) BOOL defocusOnTap;
 // Enables focus on pinch gesture. Defaults to NO.
 @property (assign, nonatomic) BOOL focusOnPinch;
 // Returns whether the animation has an elastic effect. Defaults to YES.
@@ -66,8 +68,8 @@ typedef void(^ASMediaLoadCompletion)(id media, NSError *error);
 @property (nonatomic, assign) BOOL zoomEnabled;
 // Returns whether gesture is disabled during zooming. Defaults to YES.
 @property (nonatomic, assign) BOOL gestureDisabledDuringZooming;
-// Returns whether defocus is enabled with a tap on view. Defaults to NO.
-@property (nonatomic, assign) BOOL isDefocusingWithTap;
+// Returns whether a done button (which defocusses) is displayed. Defaults to YES.
+@property (nonatomic, assign) BOOL showDoneButton;
 // Returns wheter a play icon is automatically added to media view which corresponding URL is of video type. Defaults to YES.
 @property (nonatomic, assign) BOOL addPlayIconOnVideo;
 // Image used to show a play icon on video thumbnails. Defaults to nil (uses internal image).

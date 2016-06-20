@@ -45,12 +45,13 @@ static CGFloat const kSwipeOffset = 100;
         self.animationDuration = kAnimationDuration;
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
         self.defocusOnVerticalSwipe = YES;
+        self.defocusOnTap = YES;
         self.elasticAnimation = YES;
         self.zoomEnabled = YES;
         self.isZooming = NO;
         self.focusOnPinch = NO;
         self.gestureDisabledDuringZooming = YES;
-        self.isDefocusingWithTap = NO;
+        self.showDoneButton = YES;
         self.addPlayIconOnVideo = YES;
         self.videoBehavior = [ASVideoBehavior new];
     }
@@ -191,7 +192,7 @@ static CGFloat const kSwipeOffset = 100;
     self.mediaPageViewController.dataSource = self;
     self.mediaPageViewController.delegate = self;
 
-    if (!self.isDefocusingWithTap) {
+    if (self.showDoneButton) {
         [self addDoneButton];
     }
 
@@ -499,7 +500,7 @@ static CGFloat const kSwipeOffset = 100;
 - (void)handleTapOnFocusViewController:(UITapGestureRecognizer *)tapGesture
 {
     if ([self.delegate respondsToSelector:@selector(mediaFocusManager:didTapOnMediaInfo:)]) {
-        if(self.isDefocusingWithTap) {
+        if(self.defocusOnTap) {
             [self endFocusing];
         }
         else {
