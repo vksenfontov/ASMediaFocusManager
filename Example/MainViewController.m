@@ -55,21 +55,30 @@ static CGFloat const kMaxOffset = 20;
 
     self.mediaInfoItems = @[[self mediaInfoForName:@"1f.jpg" image:[UIImage imageNamed:@"1.jpg"]],
                             [self mediaInfoForName:@"2f.jpg" image:[UIImage imageNamed:@"2.jpg"]],
-                            [self mediaInfoForName:@"3f.mp4" image:[UIImage imageNamed:@"3.jpg"]],
+                            [self mediaInfoForName:@"3.jpg" image:[UIImage imageNamed:@"3.jpg"]],
                             [self mediaInfoForName:@"4f.jpg" image:[UIImage imageNamed:@"4.jpg"]],
                             ];
     self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
     self.mediaFocusManager.delegate = self;
-    self.mediaFocusManager.elasticAnimation = YES;
+    self.mediaFocusManager.elasticAnimation = NO;
     self.mediaFocusManager.focusOnPinch = YES;
-
+    self.mediaFocusManager.backgroundColor = [UIColor blackColor];
+    self.mediaFocusManager.animationDuration = 0.4f;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
+    
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor purpleColor];
+    label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleLeftMargin;
+    [label sizeToFit];
+    
     // Tells which views need to be focusable. You can put your image views in an array and give it to the focus manager.
     [self.mediaFocusManager installOnViews:self.imageViews];
     
     [self addSomeRandomTransformOnThumbnailViews];
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;// | UIInterfaceOrientationMaskPortraitUpsideDown;
 //     return UIInterfaceOrientationMaskAll;
@@ -81,20 +90,30 @@ static CGFloat const kMaxOffset = 20;
 }
 
 #pragma mark - ASMediaFocusDelegate
+- (void)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager didTapOnMediaInfo:(ASMediaInfo *)info
+{
+    NSLog(@"didTapOnMediaInfo");
+}
 
 - (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
 {
     return self;
 }
 
+-(void)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager loadMediaForInfo:(ASMediaInfo *)info controller:(UIViewController *)controller completion:(ASMediaLoadCompletion)completion{
+    
+    completion([UIImage imageNamed:@"1.jpg"], nil);
+    
+}
+
 - (ASMediaInfo *)mediaInfoForName:(NSString *)name image:(UIImage *)image
 {
     NSURL *url = [[NSBundle mainBundle] URLForResource:[name stringByDeletingPathExtension] withExtension:name.pathExtension];
 
-    NSString *title = (url.as_isVideoURL ? @"Videos are also supported." : @"Of course, you can zoom in and out on the image.");
+    NSString *title = (url.as_isVideoURL ? @"Videos are also supported." : name);
 
-    ASMediaInfo *info = [[ASMediaInfo alloc] initWithURL:url initialImage:image title:title];
-
+    ASMediaInfo *info = [[ASMediaInfo alloc] initWithURL:url initialImage:image externalURL:nil overlayImage:[UIImage imageNamed:@"asmedia_play.png"] title:title];
+    
     return info;
 }
 
