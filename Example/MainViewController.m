@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "MediaCell.h"
 #import "NSURL+ASMediaFocusManager.h"
+#import "ASMediaFocusController.h"
 #import <QuartzCore/QuartzCore.h>
 
 static CGFloat const kMaxAngle = 0.1;
@@ -100,7 +101,7 @@ static CGFloat const kMaxOffset = 20;
     return self;
 }
 
--(void)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager loadMediaForInfo:(ASMediaInfo *)info controller:(UIViewController *)controller completion:(ASMediaLoadCompletion)completion{
+-(void)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager loadMediaForInfo:(ASMediaInfo *)info controller:(ASMediaFocusController *)controller completion:(ASMediaLoadCompletion)completion{
     
     completion([UIImage imageNamed:@"1.jpg"], nil);
     
