@@ -12,6 +12,7 @@
 typedef void(^ASMediaLoadCompletion)(id media, NSError *error);
 
 @class ASMediaFocusManager;
+@class ASMediaFocusController;
 
 @protocol ASMediasFocusDelegate <NSObject>
 
