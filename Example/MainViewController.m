@@ -81,8 +81,7 @@ static CGFloat const kMaxOffset = 20;
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait;// | UIInterfaceOrientationMaskPortraitUpsideDown;
-//     return UIInterfaceOrientationMaskAll;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -99,12 +98,6 @@ static CGFloat const kMaxOffset = 20;
 - (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
 {
     return self;
-}
-
--(void)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager loadMediaForInfo:(ASMediaInfo *)info controller:(ASMediaFocusController *)controller completion:(ASMediaLoadCompletion)completion{
-    
-    completion([UIImage imageNamed:@"1.jpg"], nil);
-    
 }
 
 - (ASMediaInfo *)mediaInfoForName:(NSString *)name image:(UIImage *)image
