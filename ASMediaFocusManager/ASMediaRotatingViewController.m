@@ -127,9 +127,9 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
     self.previousOrientation = [UIDevice currentDevice].orientation;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (BOOL)isParentSupportingInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
