@@ -587,7 +587,7 @@ static CGFloat const kSwipeOffset = 100;
 
 - (BOOL)focusController:(ASMediaFocusController *)controller shouldLoadMediaDirectly:(ASMediaInfo *)info
 {
-    if ([self.delegate respondsToSelector:@selector(mediaFocusManager:loadMediaForInfo:completion:)]) {
+    if ([self.delegate respondsToSelector:@selector(mediaFocusManager:loadMediaForInfo:controller:completion:)]) {
         return NO;
     } else {
         return YES;
@@ -596,7 +596,7 @@ static CGFloat const kSwipeOffset = 100;
 
 - (void)focusController:(ASMediaFocusController *)controller loadMedia:(ASMediaInfo *)info completion:(ASMediaLoadCompletion)completion
 {
-    [self.delegate mediaFocusManager:self loadMediaForInfo:info completion:completion];
+    [self.delegate mediaFocusManager:self loadMediaForInfo:info controller:controller completion:completion];
 }
 
 #pragma mark - UIPageViewControllerDataSource

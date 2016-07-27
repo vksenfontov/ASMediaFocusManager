@@ -12,6 +12,7 @@
 typedef void(^ASMediaLoadCompletion)(id media, NSError *error);
 
 @class ASMediaFocusManager;
+@class ASMediaFocusController;
 
 @protocol ASMediasFocusDelegate <NSObject>
 
@@ -44,7 +45,7 @@ typedef void(^ASMediaLoadCompletion)(id media, NSError *error);
 // Called before mediaURLForView to check if image is already on memory.
 - (UIImage*)mediaFocusManager:(ASMediaFocusManager*)mediaFocusManager cachedImageForView:(UIView*)view;
 
-- (void)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager loadMediaForInfo:(ASMediaInfo *)info completion:(ASMediaLoadCompletion)completion;
+- (void)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager loadMediaForInfo:(ASMediaInfo *)info controller:(ASMediaFocusController*)controller completion:(ASMediaLoadCompletion)completion;
 
 @end
 

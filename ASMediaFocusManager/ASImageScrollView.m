@@ -154,7 +154,7 @@
     }
 
     CGSize boundsSize = self.bounds.size;
-    CGFloat maxScale = 1;
+    CGFloat maxScale = 1.5;
     
     // calculate min/max zoomscale
     CGFloat xScale = boundsSize.width  / _imageSize.width;    // the scale needed to perfectly fit the image width-wise
