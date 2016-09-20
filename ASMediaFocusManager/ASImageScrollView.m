@@ -167,11 +167,11 @@
     CGFloat maxImageScale = MAX(xImageScale, yImageScale);
     
     maxImageScale = MAX(minScale, maxImageScale);
-    maxScale = MIN(maxScale, maxImageScale);
+    //maxScale = MIN(maxScale, maxImageScale);
 
     // If the image is smaller than the screen, force it to be zoomed.
     if (minScale > maxScale) {
-        maxScale = minScale;
+        //maxScale = minScale;
     }
         
     self.maximumZoomScale = maxScale;
