@@ -7,6 +7,7 @@
 //
 
 #import "ASVideoControlView.h"
+#import "ASMediaFocusManager.h" //VK: for call ASMediaFocusManager.bundle
 
 @interface ASVideoControlView ()
 @property (strong, nonatomic) IBOutlet UISlider *slider;
@@ -22,13 +23,14 @@
 {
     NSArray *objects;
     
-    objects = [[NSBundle mainBundle] loadNibNamed:@"ASVideoControlView" owner:nil options:nil];
+    objects = [ASMediaFocusManager.bundle loadNibNamed:@"ASVideoControlView" owner:nil options:nil]; //VK
     
     return objects[0];
 }
 
 - (void)awakeFromNib
 {
+	[super awakeFromNib];
     [self.scrubbing addObserver:self forKeyPath:@"player" options:NSKeyValueObservingOptionNew context:nil];
 }
 

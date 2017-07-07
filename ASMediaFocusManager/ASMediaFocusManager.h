@@ -76,8 +76,12 @@ typedef void(^ASMediaLoadCompletion)(id media, NSError *error);
 // Image used to show a play icon on video thumbnails. Defaults to nil (uses internal image).
 @property (nonatomic, strong) UIImage *playImage;
 
++ (NSBundle *)bundle; //VK
+
 // Install focusing gesture on the specified array of views.
 - (void)installOnViews:(NSArray *)views;
+// Install focusing gesture on the specified view superview.
+- (void)installOnViewSuperview:(UIView *)view;
 // Install focusing gesture on the specified view.
 - (void)installOnView:(UIView *)view;
 // Start the focus animation on the specified view. The focusing gesture must have been installed on this view.

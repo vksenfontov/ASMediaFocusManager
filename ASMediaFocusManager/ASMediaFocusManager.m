@@ -37,6 +37,12 @@ static CGFloat const kSwipeOffset = 100;
 
 @implementation ASMediaFocusManager
 
++ (NSBundle *)bundle {
+	NSBundle* podBundle = [NSBundle bundleForClass:ASMediaFocusManager.class];
+	NSURL* bundleURL = [podBundle URLForResource:NSStringFromClass(ASMediaFocusManager.class) withExtension:@"bundle"];
+	return [NSBundle bundleWithURL: bundleURL];
+}
+
 - (id)init
 {
     self = [super init];
@@ -69,6 +75,24 @@ static CGFloat const kSwipeOffset = 100;
     for(UIView *view in views)
     {
         [self installOnView:view];
+    }
+}
+
+- (void)installOnViewSuperview:(UIView *)view
+{
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleFocusGesture:)];
+    [view.superview addGestureRecognizer:tapGesture];
+    view.superview.userInteractionEnabled = YES;
+    
+    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchFocusGesture:)];
+    pinchRecognizer.delegate = self;
+    [view.superview addGestureRecognizer:pinchRecognizer];
+    
+    ASMediaInfo *info = [self.delegate mediaFocusManager:self mediaInfoForView:view];
+    
+    if(self.addPlayIconOnVideo && info.isVideo)
+    {
+        [self.videoBehavior addVideoIconToView:view image:self.playImage];
     }
 }
 
@@ -159,7 +183,7 @@ static CGFloat const kSwipeOffset = 100;
         cachedImage = [self.delegate mediaFocusManager:self cachedImageForView:mediaView];
     }
 
-    ASMediaFocusController *viewController = [[ASMediaFocusController alloc] init];
+    ASMediaFocusController *viewController = [[ASMediaFocusController alloc] initWithNibName:nil bundle:ASMediaFocusManager.bundle]; //VK
     viewController.delegate = self;
     [viewController setInfo:mediaInfo withCachedImage:cachedImage];
     if (mediaInfo.overlayImage)
@@ -653,7 +677,7 @@ static CGFloat const kSwipeOffset = 100;
     [self.focusViewController playVideo]; // plays the current focus controller after transitioning (may be the one we were transitioning from if completed is false).
 }
 
-- (NSUInteger)pageViewControllerSupportedInterfaceOrientations:(UIPageViewController *)pageViewController
+- (UIInterfaceOrientationMask)pageViewControllerSupportedInterfaceOrientations:(UIPageViewController *)pageViewController
 {
     return UIInterfaceOrientationMaskAll;
 }
