@@ -81,7 +81,8 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
         switch ([UIDevice currentDevice].orientation)
         {
             case UIDeviceOrientationLandscapeRight:
-                if(self.parentViewController.interfaceOrientation == UIInterfaceOrientationPortrait)
+				// if(self.parentViewController.interfaceOrientation == UIInterfaceOrientationPortrait)
+				if([[UIApplication sharedApplication] statusBarOrientation] == UIDeviceOrientationLandscapeLeft || [[UIApplication sharedApplication] statusBarOrientation] == UIDeviceOrientationLandscapeRight) //VK
                 {
                     transform = CGAffineTransformMakeRotation(-M_PI_2);
                 }
@@ -92,7 +93,8 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
                 break;
 
             case UIDeviceOrientationLandscapeLeft:
-                if(self.parentViewController.interfaceOrientation == UIInterfaceOrientationPortrait)
+                // if(self.parentViewController.interfaceOrientation == UIInterfaceOrientationPortrait)
+				if([[UIApplication sharedApplication] statusBarOrientation] == UIDeviceOrientationPortrait || [[UIApplication sharedApplication] statusBarOrientation] == UIDeviceOrientationPortraitUpsideDown) //VK
                 {
                     transform = CGAffineTransformMakeRotation(M_PI_2);
                 }
