@@ -128,8 +128,19 @@ static CGFloat const kSwipeOffset = 100;
     self.doneButton.layer.cornerRadius = 4;
     self.doneButton.layer.borderColor = [UIColor whiteColor].CGColor;
     self.doneButton.center = CGPointMake(self.mediaPageViewController.view.bounds.size.width - self.doneButton.bounds.size.width/2 - 10, self.doneButton.bounds.size.height/2 + 20);
-    self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+
     [self.mediaPageViewController.view addSubview:self.doneButton];
+	
+	if (@available(iOS 11.0, *))  {
+		self.doneButton.translatesAutoresizingMaskIntoConstraints = NO;
+		UIView* buttonSuperview = self.doneButton.superview;
+		
+		[[self.doneButton.topAnchor constraintEqualToAnchor:buttonSuperview.safeAreaLayoutGuide.topAnchor constant:20.f] setActive: YES];
+		[[self.doneButton.rightAnchor constraintEqualToAnchor:buttonSuperview.safeAreaLayoutGuide.rightAnchor constant:-20.f] setActive: YES];
+		[[self.doneButton.widthAnchor constraintGreaterThanOrEqualToConstant:100.f] setActive: YES];
+	} else {
+		 self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+	}
 }
 
 #pragma mark - Utilities
